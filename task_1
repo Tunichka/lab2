@@ -1,0 +1,27 @@
+def prime(n):
+    primes = [2]
+    num = 3
+    while len(primes) < n:
+        is_prime = True
+        for prime in primes:
+            if prime * prime > num:  # если возможный делитель превысил квадрат числа, останавливаем проверку
+                break
+            if num % prime == 0:
+                is_prime = False
+                break
+        if is_prime:
+            primes.append(num)
+        num += 2
+    return primes[n-1]
+
+while True:
+    try:
+        n = int(input("Введите номер простого числа: "))
+        if n <= 0:
+            print("Номер должен быть положительным числом!")
+        else:
+            result = prime(n)
+            print(f"Простое число под номером {n}:", result)
+            break
+    except ValueError:
+        print("Ошибка! Введите целое число.")
