@@ -1,0 +1,29 @@
+def analyze_object(obj):
+    if isinstance(obj, list):
+        even_count = 0
+        max_num = float("-inf")
+        for num in obj:
+            if isinstance(num, int) and num % 2 == 0:
+                even_count += 1
+            if isinstance(num, int) and num > max_num:
+                max_num = num
+        obj = [num for num in obj if not isinstance(num, int) or num >= 0]
+        print("Число четных чисел:", even_count)
+        print("Максимальное число:", max_num)
+        print("Список без отрицательных элементов:", obj)
+    elif isinstance(obj, dict):
+        sorted_dict = {k: v for k, v in sorted(obj.items(), key=lambda item: item[1], reverse=True)}  # сортируем по значению в порядке убывания
+        print("Отсортированный словарь:", sorted_dict)
+    elif isinstance(obj, int):
+        obj = str(obj)[::-1]
+        print("Число в обратном порядке:", obj)
+    elif isinstance(obj, str):
+        char_count = {}
+        for char in obj:
+            char_count[char] = char_count.get(char, 0) + 1  # подсчитываем количество вхождений каждого символа
+        print("Количество вхождений каждого символа в виде словаря:", char_count)
+    else:
+        print("Неподдерживаемый тип объекта.")
+
+obj = input("Введите объект для анализа: ")
+analyze_object(obj)
