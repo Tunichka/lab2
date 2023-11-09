@@ -1,0 +1,53 @@
+def find_negative_column(matrix):
+    rows = len(matrix)
+    cols = len(matrix[0])
+
+    for j in range(cols):
+        column_sum = 0
+        count = 0
+
+        for i in range(rows):
+            if matrix[i][j] < 0:
+                column_sum += matrix[i][j]
+                count += 1
+
+        if count > 0:
+            average = column_sum / count
+            return j, average
+
+    return None
+
+
+# Ввод размеров матрицы с клавиатуры
+while True:
+    try:
+        rows = int(input("Введите количество строк в матрице: "))
+        cols = int(input("Введите количество столбцов в матрице: "))
+
+        if rows <= 0 or cols <= 0:
+            print("Количество строк и столбцов должно быть положительным числом!")
+        else:
+            break
+    except ValueError:
+        print("Ошибка! Введите целое число.")
+
+# Инициализация матрицы с нулями
+matrix = [[0 for _ in range(cols)] for _ in range(rows)]
+
+for i in range(rows):
+    for j in range(cols):
+        while True:
+            try:
+                matrix[i][j] = int(input(f"Введите элемент [{i}][{j}]: "))
+                break
+            except ValueError:
+                print("Ошибка! Введите целое число.")
+
+result = find_negative_column(matrix)
+
+if result is not None:
+    column_index, average = result
+    print(f"Первый столбец со всеми отрицательными элементами: {column_index + 1}")
+    print(f"Среднее арифметическое отрицательных элементов: {average}")
+else:
+    print("В матрице отсутствуют столбцы с отрицательными элементами")
