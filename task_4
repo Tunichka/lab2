@@ -1,0 +1,25 @@
+def divide(x, y):
+    try:
+        result = x / y
+        print("Результат деления:", result)
+    except ZeroDivisionError:
+        print("Ошибка: Деление на ноль!")
+    except ValueError:
+        print("Ошибка: Неверный тип данных в делении!")
+    except Exception as eh:
+        print("Ошибка:", str(eh))
+    finally:
+        print("Конец программы.")
+
+while True:
+    try:
+        x = int(input("Введите делимое: "))
+        y = int(input("Введите делитель: "))
+        divide(x, y)
+    except ValueError:
+        print("Ошибка: Неверный тип данных! Введите целое число.")
+    except Exception as e:
+        print("Ошибка:", str(e))
+    finally:
+        print()
+
